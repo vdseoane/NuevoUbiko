@@ -1,5 +1,6 @@
+ <?php ob_start() ?>
 
-<form method="post" action="./php/conexion.php">
+<form method="post" action="index.php?ctr=admision">
     <div id="divForm">
         <div class="form-inline">
             <label id="nombre">Nombre</label>
@@ -27,10 +28,10 @@
         <textarea name="anotaciones" id="anotaciones" cols="30" rows="6" class="form-control"></textarea>
     </div>
     <div id="enviar">
-        <input type="image" value="" SRC="../../web/img/boton_enviar.jpg"> 
+        <input type="image" value="" SRC="img/boton_enviar.jpg"> 
     </div>
 </form>
 
- <?php $contenedor = ob_get_clean() ?>
+<?php $contenido = ob_get_clean() ?>
 
- <?php include 'layout.php' ?>
+<?php include 'layout.php' ?>
