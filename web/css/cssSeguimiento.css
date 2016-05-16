@@ -20,6 +20,55 @@
 	width: 590px;
 	margin-left: 0px;
 }
+.buscadorPaciente{
+	position: absolute;
+	float: left;
+	height: 40px;	
+	width: 285px;
+	margin-left: 150px;
+	margin-top: 5px;
+	border:#F00 0px solid;
+}
+#buscador{
+	width: 200px;
+	height: 30px;
+}
+.imgBuscar{
+	position: relative;
+	float: right;
+	height: 30px;	
+	width: 60px;
+	margin-right:20px; 
+}
+#inf{
+	position: absolute;
+	float: left;
+	width: 596px;
+	height: 38px;
+	border:#F00 0px solid;
+}
+#nombrePaciente{
+	position: relative;
+	float: left;
+	width: 348px;
+	height: 38px;
+	margin-left: 105px;
+	border:#F00 0px solid;	
+	background-color: transparent;
+	border: transparent;
+	font-size: 20px;
+}
+#nhcPaciente{
+	position: relative;
+	float: right;
+	width: 83px;
+	height: 38px;
+	margin-right: 15px;
+	border:#F00 0px solid;
+	background-color: transparent;
+	border: transparent;
+	font-size: 20px;
+}
 #botonesScroll{
 	float: right;
 	border:#F00 0px solid;
@@ -96,6 +145,13 @@
 	width: 90px;
 	margin-top: 6px;
 	margin-left: 2px;	
+}
+
+.flecha{
+	position: absolute;
+	margin-top: 25px;
+    margin-left: 22px;
+    /*display: none;*/
 }
 span.circulos{
 	border:#F3F3F3 5px solid;
@@ -224,17 +280,16 @@ span.azulTriaje{
 
 .infiniteCarousel{
 	float: left;
-	width:600px;
+	width:700px;
     height:1000px;
     overflow:hidden;
-    margin-left: 80px;
+    margin-left: 55px;
 }
 
 .viewport{
-	float: left;
 	border:#D2CFC1 1px solid;
 	height: 400px;	
-	width: 600px;
+	width: 700px;
 	margin: 0px 0px 0px 0px;
 	float: left;
 	border-top-left-radius:10px;
@@ -257,40 +312,26 @@ span.azulTriaje{
 
 #columnaCarousel{
 	height: 100px;
-	width: 600px;
+	width: 700px;
 	border:#ABC 0px solid;
 }
 
-#cuadradoLista{
+.cuadradoLista{
 	height: 100px;
 	width: 100px;
 	float: left;
 	border:#AAA 0px solid;
 }
 
-#cuadradoLargoLista{
+.cuadradoLargoLista{
 	height: 100px;
-	width: 150px;
+	width: 133px;
 	float: left;
 	border:#BBB 0px solid;
 }
 
-#columnaCarousel1{
+.columnaCarousel{
 	height: 100px;
-	width: 600px;
+	width: 700px;
 	border:#ABC 0px solid;
-}
-
-#cuadradoLista1{
-	height: 100px;
-	width: 100px;
-	float: left;
-	border:#AAA 0px solid;
-}
-
-#cuadradoLargoLista1{
-	height: 100px;
-	width: 150px;
-	float: left;
-	border:#BBB 0px solid;
 }

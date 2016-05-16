@@ -1,6 +1,6 @@
  <?php ob_start() ?>
 
-<form method="post" action="index.php?ctr=admision">
+<form method="post" action="index.php?ctl=admision">
     <div id="divForm">
         <div class="form-inline">
             <label id="nombre">Nombre</label>
@@ -8,7 +8,7 @@
             <label id="telefono">Tel&eacute;fono</label>
         </div>
         <div class="form-inline">
-            <input type="text" name="nombre" id="nombre" required class="form-control">
+            <input type="text" name="nombre" id="nombre" value= <?php echo $this->datos->getNombreUsuario(); ?> required class="form-control">
             <input type="text" name="apellidos" required id="apellidos" class="form-control">
             <input type="text" name="telefono" required id="telefono" class="form-control">
         </div>

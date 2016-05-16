@@ -89,11 +89,13 @@
 	width: 147px;
 	margin-top: 39px;
 	margin-left: 32px;
-	background-color: #FFF;	
+	background-color: transparent;
+	border: transparent;
+	font-size: 20px;
 }
 #boton_login{
 	position: absolute;
-	z-index:0;
+	z-index: 2;
 	height: 33px;
 	width: 33px;
 	margin-top: 34px;

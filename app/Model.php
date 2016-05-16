@@ -25,6 +25,7 @@
     public function logIn($nombre, $pass){
         $sql = "SELECT idUsuario, Password FROM usuario WHERE idUsuario = '".$nombre."'
             AND Password = '". $pass."'";
+
         $result = $this->conexion->query($sql);
 
         return $result;

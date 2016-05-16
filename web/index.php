@@ -2,14 +2,17 @@
  // web/index.php
 
  // carga del modelo y los controladores
- require_once __DIR__ . '/../app/Config.php';
- require_once __DIR__ . '/../app/Model.php';
- require_once __DIR__ . '/../app/Controller.php';
+ include_once __DIR__ . '/../app/Config.php';
+ include_once __DIR__ . '/../app/Model.php';
+ include_once __DIR__ . '/../app/Controller.php';
+ //include_once __DIR__ . '/../app/datos.php';
 
  // enrutamiento
  $map = array(
      'logIn' => array('controller' =>'Controller', 'action' =>'logIn'),
-     'admision' => array('controller' =>'Controller', 'action' =>'admision')
+     'admision' => array('controller' =>'Controller', 'action' =>'admision'),
+     'logOut' => array('controller' =>'Controller', 'action' =>'logOut'),
+     'seguimiento' => array('controller' =>'Controller', 'action' =>'seguimiento')
      /*'listar' => array('controller' =>'Controller', 'action' =>'listar'),
      'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
      'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),

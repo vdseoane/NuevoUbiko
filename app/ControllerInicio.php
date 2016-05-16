@@ -1,22 +1,16 @@
  <?php
- include __DIR__ . '/../app/datos.php';
+
  class Controller
  {
-
     private $m;
+    private $_SESSION;
     private $usuario = "man";
-    public $datos;
-    //private $datos = new datos;
 
-    public function __construct(){
+     public function __construct(){
         //session_start();
-        session_start();
+
         $this->m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
             Config::$mvc_bd_clave, Config::$mvc_bd_hostname);  
-
-        $this->datos = new datos();
-        $this->usuario = $this->datos->getNombrePaciente();
-        //echo "<script type=\"text/javascript\">alert(\"$this->usuario\");</script>";
      }
 
     //Carga la plantilla del log in (inicio.php)
@@ -25,66 +19,29 @@
     //En caso negativo vuelve al log in (inicio.php)
     public function logIn()
     {
-
-
         if(isset($_POST['usuario']) && isset($_POST['password'])){
-            
             $nombre = $_POST['usuario'];
             $pass = $_POST['password'];
-echo "<script type=\"text/javascript\">alert(\"1\");</script>";
+            //$m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
+            //         Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+            
             $result = $this->m->logIn($nombre, $pass);
 
             if ($result->num_rows > 0) {
-                $_SESSION["nombreSesion"] = $nombre;
-                $this->datos->setNombreUsuario($nombre);
+
+                //$this->_SESSION = $nombre;
+                $this->usuario = $_POST['usuario'];
                 
-                $this->usuario = $this->datos->getNombreUsuario();
-                echo "<script type=\"text/javascript\">alert(\"$this->usuario\");</script>";
                 header('Location: index.php?ctl=admision');
             }
             else{
                 header('Location: index.php?ctl=logIn');
             }
         }
-        echo "<script type=\"text/javascript\">alert(\"2\");</script>";
         require __DIR__ . '/Templates/inicio.php';
     }
 
-    public function admision(){
-
-        if(isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['nhc'])){
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $telefono = $_POST['telefono'];
-            $direccion = $_POST['direccion'];
-            $nhc = $_POST['nhc'];
-            $anotaciones = $_POST['anotaciones'];
-
-            $result = $this->m->insertarPaciente($nombre, $apellidos, $telefono, $direccion, $nhc, $anotaciones);
-            $this->datos->setNombrePaciente($nombre);
-            $this->datos->setNhcPaciente($nhc);
-            echo "<script type=\"text/javascript\">alert(\"Conexion establecida\");</script>";
-            header('Location: index.php?ctl=seguimiento');
-        }
-
-        require __DIR__ . '/Templates/admision.php';
-    }
-
-    public function logOut(){ 
-
-        session_start(); 
-        session_destroy(); 
-  
-        header('Location: index.php?ctl=logIn'); 
-    }
-
-    public function seguimiento(){
-
-
-        require __DIR__ . '/Templates/seguimiento.php';    
-    }
-
-
+    
 
 
 
