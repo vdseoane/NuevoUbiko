@@ -1,21 +1,15 @@
  <?php
- include __DIR__ . '/../app/datos.php';
+
  class Controller
  {
 
-    private $m;
-    private $usuario = "man";
-    public $datos;
-    //private $datos = new datos;
+    private $model;
 
     public function __construct(){
         //session_start();
         session_start();
-        $this->m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
+        $this->model = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
             Config::$mvc_bd_clave, Config::$mvc_bd_hostname);  
-
-        $this->datos = new datos();
-        $this->usuario = $this->datos->getNombrePaciente();
         //echo "<script type=\"text/javascript\">alert(\"$this->usuario\");</script>";
      }
 
@@ -26,27 +20,21 @@
     public function logIn()
     {
 
-
         if(isset($_POST['usuario']) && isset($_POST['password'])){
             
             $nombre = $_POST['usuario'];
             $pass = $_POST['password'];
-echo "<script type=\"text/javascript\">alert(\"1\");</script>";
-            $result = $this->m->logIn($nombre, $pass);
+            $resultado = $this->model->logIn($nombre, $pass);
 
-            if ($result->num_rows > 0) {
-                $_SESSION["nombreSesion"] = $nombre;
-                $this->datos->setNombreUsuario($nombre);
+            if ($resultado->num_rows > 0) {
+                $_SESSION["nombreUsuario"] = $nombre;
                 
-                $this->usuario = $this->datos->getNombreUsuario();
-                echo "<script type=\"text/javascript\">alert(\"$this->usuario\");</script>";
                 header('Location: index.php?ctl=admision');
             }
             else{
                 header('Location: index.php?ctl=logIn');
             }
         }
-        echo "<script type=\"text/javascript\">alert(\"2\");</script>";
         require __DIR__ . '/Templates/inicio.php';
     }
 
@@ -59,11 +47,14 @@ echo "<script type=\"text/javascript\">alert(\"1\");</script>";
             $direccion = $_POST['direccion'];
             $nhc = $_POST['nhc'];
             $anotaciones = $_POST['anotaciones'];
+            $horaActual = date("g:i A");
+            $fechaActual = date("y-m-d");
+            $fecha = '$fechaActual[mday]/$fechaActual[month]/$fechaActual[year]';
+            $resultado = $this->model->insertarPaciente($nombre, $apellidos, $telefono, $direccion, $nhc, $anotaciones);
+            $_SESSION["nombrePaciente"]=$nombre;
+            $_SESSION["nhcPaciente"]=$nhc;
 
-            $result = $this->m->insertarPaciente($nombre, $apellidos, $telefono, $direccion, $nhc, $anotaciones);
-            $this->datos->setNombrePaciente($nombre);
-            $this->datos->setNhcPaciente($nhc);
-            echo "<script type=\"text/javascript\">alert(\"Conexion establecida\");</script>";
+            $this->insertarUbicacion($nhc, 'TR', $horaActual, $fechaActual, $_SESSION['nombreUsuario']);
             header('Location: index.php?ctl=seguimiento');
         }
 
@@ -71,17 +62,43 @@ echo "<script type=\"text/javascript\">alert(\"1\");</script>";
     }
 
     public function logOut(){ 
-
-        session_start(); 
         session_destroy(); 
   
         header('Location: index.php?ctl=logIn'); 
     }
 
     public function seguimiento(){
+        //echo "<script type=\"text/javascript\">alert(\"hello\");</script>";
+        if(isset($_POST['buscador'])){
+            $nhc = $_POST['buscador'];
+            $params = array(
+             'resultado' => array()
+         );
+            //echo "<script type=\"text/javascript\">alert(\"adios\");</script>";
+            $params['resultado'] = $this->model->buscarPacienteNhc($nhc);
+            if(count($params) > 0){
+                //echo "<script type=\"text/javascript\">alert(\"ai mama\");</script>";
+                foreach ($params['resultado'] as $result) :
+                    $_SESSION['nombrePaciente'] = $result['nombre'];
+                    $_SESSION['nhcPaciente'] = $result['nhc'];
+                endforeach;
+            }
+        }
 
 
         require __DIR__ . '/Templates/seguimiento.php';    
+    }
+
+    public function seg(){
+                    $_SESSION['nombrePaciente']= "Paciente";
+                    $_SESSION['nhcPaciente'] = "NHC";
+
+        require __DIR__ . '/Templates/seguimiento.php';    
+    }
+
+    public function insertarUbicacion($nhc, $idLocalizacion, $horaInicio, $fecha, $usuario){
+
+        $this->model->insertarUbicacion($nhc, $idLocalizacion, $horaInicio, $fecha, $usuario);
     }
 
 

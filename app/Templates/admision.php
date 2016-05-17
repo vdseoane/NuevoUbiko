@@ -8,9 +8,9 @@
             <label id="telefono">Tel&eacute;fono</label>
         </div>
         <div class="form-inline">
-            <input type="text" name="nombre" id="nombre" value= <?php echo $this->datos->getNombreUsuario(); ?> required class="form-control">
+            <input type="text" name="nombre" id="nombre" required class="form-control">
             <input type="text" name="apellidos" required id="apellidos" class="form-control">
-            <input type="text" name="telefono" required id="telefono" class="form-control">
+            <input type="text" name="telefono" id="telefono" class="form-control">
         </div>
     </div>
     <div id="divForm1">
@@ -19,7 +19,7 @@
             <label id="nhc">NHC</label>
         </div>
         <div class="form-inline">
-            <input type="text" name="direccion" required id="direccion" class="form-control">
+            <input type="text" name="direccion" id="direccion" class="form-control">
             <input type="text" name="nhc" required id="nhc" class="form-control">
         </div>
     </div>

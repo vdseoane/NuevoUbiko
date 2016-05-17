@@ -26,18 +26,38 @@
         $sql = "SELECT idUsuario, Password FROM usuario WHERE idUsuario = '".$nombre."'
             AND Password = '". $pass."'";
 
-        $result = $this->conexion->query($sql);
+        $resultado = $this->conexion->query($sql);
 
-        return $result;
+        return $resultado;
     }
 
     public function insertarPaciente($nombre, $apellidos, $telefono, $direccion, $nhc, $anotaciones){
         $sql ="INSERT INTO paciente(nhc, nombre, apellidos, calle, estado, telefono, anotaciones)
             VALUES('".$nhc."','".$nombre."','".$apellidos."','".$direccion."','1','".$telefono."','".$anotaciones."')";
 
-        $result = $this->conexion->query($sql);
+        $resultado = $this->conexion->query($sql);
 
-        return $result;
+        return $resultado;
+    }
+
+    public function buscarPacienteNhc($nhc){
+        $sql = "SELECT nombre, nhc FROM paciente WHERE nhc = '".$nhc."'";
+
+        $resultado = $this->conexion->query($sql);
+
+        $res = array();
+         while ($row = mysqli_fetch_assoc($resultado))
+         {
+             $res[] = $row;
+         }
+
+        return $res;
+    }
+
+    public function insertarUbicacion($nhc, $idLocalizacion, $horaInicio, $fecha, $usuario){
+        $sql ="INSERT INTO ubicacionPaciente(Paciente_NHC, Localizacion_idLocalizacion, horaInicio, fecha, Usuario_idUsuario)
+            VALUES('".$nhc."','".$idLocalizacion."','".$horaInicio."','".$fecha."','".$usuario."')";
+        $this->conexion->query($sql);
     }
 /*
      public function dameAlimentos()

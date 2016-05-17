@@ -1,15 +1,6 @@
     
      <?php ob_start() ?>
 
-     <?php include_once __DIR__ . '/../datos.php';
-        $datos = new datos();
-
-        $nombre = $datos->getNombrePaciente();
-
-
-
-    ?>
-     
       <div id="navCirculos">
         <div id="navCirculosDentro1" class="item-wrapper">
           <div id="box" class="xxx arrastrable"><span class="circulos blanco circulo">BOX</span></div>
@@ -30,16 +21,18 @@
       </div>
       <div id="infoPaciente">
         <div class="superior">
-          <div class= "buscadorPaciente">
-            <img class="imgBuscar" src ="img/boton_buscar.png">
-            <input type="text" name="buscador" required id="buscador" class="form-control">
+        <form method='post' action='index.php?ctl=seguimiento'>
+          <div class= "buscadorPaciente"> 
+              <input type="image" class="imgBuscar" src ="img/boton_buscar.png">
+              <input type="text" name="buscador" required id="buscador" class="form-control">
           </div>
-          <img src ="img/infoPaciente1.png">
+          </form>
+          <img type="image" value="" src ="img/infoPaciente1.png">
         </div>
         <div class="inferior">
           <div id= "inf">
-            <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control" value= <?php echo $nombre; ?> readonly>
-            <input type="text" name="nhcPaciente" id="nhcPaciente" class="form-control" value= '44' readonly>
+            <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control" value= <?php echo $_SESSION['nombrePaciente']; ?> readonly>
+            <input type="text" name="nhcPaciente" id="nhcPaciente" class="form-control" value= <?php echo $_SESSION['nhcPaciente']; ?> readonly>
           </div>
           <img src ="img/infoPaciente2.png">
         </div>

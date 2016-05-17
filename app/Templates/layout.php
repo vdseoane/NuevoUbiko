@@ -33,14 +33,14 @@
       <div id="navegacion">
         <ul class="navegacion_ul">
           <li class="navegacion_li" href=""><a id="admision" title="Admision" href="index.php?ctl=admision">Admisi&oacute;n</a></li>
-          <li class="navegacion_li" ><a id="seguimiento"  title="Seguimiento" href="index.php?ctl=seguimiento">Seguimiento</a></li>
+          <li class="navegacion_li" ><a id="seguimiento"  title="Seguimiento" href="index.php?ctl=seg">Seguimiento</a></li>
           <li class="navegacion_li"><a href="#" id="box" title="BOX">BOX</a></li>
           <li class="navegacion_li"><a href="#" id="estadisticas" title="Estadisticas">Estad&iacute;sticas</a></li>
         </ul>
       </div>
       <div id="login">
             <div>
-              <input type="text" name="texto_login" value= <?php echo $_SESSION["nombreSesion"]; ?>  id="texto_login" class="form-control" readonly>
+              <input type="text" name="texto_login" value= <?php echo $_SESSION["nombreUsuario"]; ?>  id="texto_login" class="form-control" readonly>
               <img id="imagen_login" src="img/acceso.jpg" width="220" height="72" alt="login" />
               <a href="index.php?ctl=logOut"> <image type="image" id="boton_login" src="img/power.png" alt="boton_login"> </a>
             </div>
