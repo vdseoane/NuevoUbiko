@@ -90,7 +90,7 @@
     }
 
     public function seg(){
-                    $_SESSION['nombrePaciente']= "Paciente";
+                    $_SESSION['nombrePaciente']= "Pacsssiente gika";
                     $_SESSION['nhcPaciente'] = "NHC";
 
         require __DIR__ . '/Templates/seguimiento.php';    
@@ -99,6 +99,10 @@
     public function insertarUbicacion($nhc, $idLocalizacion, $horaInicio, $fecha, $usuario){
 
         $this->model->insertarUbicacion($nhc, $idLocalizacion, $horaInicio, $fecha, $usuario);
+    }
+
+    public function box(){
+         require __DIR__ . '/Templates/box.php';
     }
 
 

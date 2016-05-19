@@ -149,10 +149,23 @@
 }
 
 .flecha{
-	position: absolute;
-	margin-top: 25px;
-    margin-left: 22px;
-    /*display: none;*/
+	height: 50px;
+	width: 90px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#hora{
+	height: 26px;
+	width: 63px;
+	background-color: transparent;
+	margin-top: 12px;
+	margin-left: 5px;
+	border-color: transparent;
+	color: #FFF;
 }
 span.circulos{
 	border:#F3F3F3 5px solid;

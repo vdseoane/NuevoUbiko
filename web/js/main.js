@@ -63,7 +63,7 @@ $(function () {
 
         console.info("Init Manage Pages");
 
-        $("#admision").click(function(event) {
+        /*$("#admision").click(function(event) {
             $("#contenedor").load('adm.html');
             $("#linkestilo").attr("href", "./css/estiloAd.css")
         });     
@@ -78,7 +78,7 @@ $(function () {
         $("#estadisticas").click(function(event) {
             $("#contenedor").load('adm.html');
             $("#linkestilo").attr("href", "./css/estiloEst.css")
-        });     
+        });     */
     }
 
 
@@ -87,7 +87,7 @@ $(function () {
 
     var init = function () {
         managePages();
-        //initDraggableGrid();
+        initDraggableGrid();
     }
 
     init();
