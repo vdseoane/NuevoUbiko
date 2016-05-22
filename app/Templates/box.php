@@ -33,7 +33,7 @@
         <div class="cuadradoBox">
           <div class="c">
             <input type="text" name="" id="infoBoxPaciente" class="form-control" value="Paciente" readonly>
-            <img type="image" value="" src ="img/camaNegra.png">
+            <img type="image" value="" src ="img/camaAzul.png">
             <input type="text" name="" id="infoBoxCama" class="form-control" value="Cama" readonly>
           </div>
         </div>

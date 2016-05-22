@@ -50,63 +50,129 @@
 
 
 
-              <div class="cuadradoLista droppable" id="c1">
+              <div class="cuadradoLista droppable" id="1">
                 <div id="ad" class="xxx"><span class="circulos azulAD">AD</span></div>
               </div>
-              <div class="cuadradoLargoLista" id="f1">
-                <div id ="f" class="flecha" style="background-image: url(img/flecha.png)"">
-                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" >
+              <div class="cuadradoLargoLista">
+                <div id="2" class="flecha" style="display:inline-block">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
                 </div>
               </div>
-              <div class="cuadradoLista droppable" id="c2">
+              <div class="cuadradoLista droppable" id="3">
                 <div id="tr" class="xxx"><span class="circulos azulTriaje">TR</span></div>
               </div>
-              <div class="cuadradoLargoLista" id="f2">
-               
+              <div class="cuadradoLargoLista">
+                <div id="4" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
               </div>
-
-              <div class="cuadradoLista droppable" id="c3"></div>
-              <div class="cuadradoLargoLista" id="f3"></div>
+              <div class="cuadradoLista droppable" id="5"></div>
+              <div class="cuadradoLargoLista">
+                <div id="6" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
             </div>
             <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="c4"></div>
-              <div class="cuadradoLargoLista" id="f4"></div>
-              <div class="cuadradoLista droppable" id="c5"></div>
-              <div class="cuadradoLargoLista" id="f5"></div>
-              <div class="cuadradoLista droppable" id="c6"></div>
-              <div class="cuadradoLargoLista" id="f6"></div>
+              <div class="cuadradoLista droppable" id="7"></div>
+              <div class="cuadradoLargoLista">
+                <div id="8" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="9"></div>
+              <div class="cuadradoLargoLista">
+                <div id="10" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="11">
+              </div>
+              <div class="cuadradoLargoLista">
+                <div id="12" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
             </div>
             <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="c7"></div>
-              <div class="cuadradoLargoLista" id="f7"></div>
-              <div class="cuadradoLista droppable" id="c8"></div>
-              <div class="cuadradoLargoLista" id="f8"></div>
-              <div class="cuadradoLista droppable" id="c9"></div>
-              <div class="cuadradoLargoLista" id="f9"></div>
+              <div class="cuadradoLista droppable" id="13"></div>
+              <div class="cuadradoLargoLista">
+                <div id="14" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="15"></div>
+              <div class="cuadradoLargoLista">
+                <div id="16" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="17"></div>
+              <div class="cuadradoLargoLista">
+                <div id="18" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
             </div>
             <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="c10"></div>
-              <div class="cuadradoLargoLista" id="f10"></div>
-              <div class="cuadradoLista droppable" id="c11"></div>
-              <div class="cuadradoLargoLista" id="f11"></div>
-              <div class="cuadradoLista droppable" id="c12"></div>
-              <div class="cuadradoLargoLista" id="f12"></div>
+              <div class="cuadradoLista droppable" id="19"></div>
+              <div class="cuadradoLargoLista">
+                <div id="20" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="21"></div>
+              <div class="cuadradoLargoLista">
+                <div id="22" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="23"></div>
+              <div class="cuadradoLargoLista">
+                <div id="24" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
             </div>
             <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="c13"></div>
-              <div class="cuadradoLargoLista" id="f13"></div>
-              <div class="cuadradoLista droppable" id="c14"></div>
-              <div class="cuadradoLargoLista" id="f14"></div>
-              <div class="cuadradoLista droppable" id="c15"></div>
-              <div class="cuadradoLargoLista" id="f15"></div>
+              <div class="cuadradoLista droppable" id="25"></div>
+              <div class="cuadradoLargoLista">
+                <div id="26" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="27"></div>
+              <div class="cuadradoLargoLista">
+                <div id="28" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="29"></div>
+              <div class="cuadradoLargoLista">
+                <div id="30" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
             </div>
             <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="c16"></div>
-              <div class="cuadradoLargoLista" id="f126"></div>
-              <div class="cuadradoLista droppable" id="c17"></div>
-              <div class="cuadradoLargoLista" id="f17"></div>
-              <div class="cuadradoLista droppable" id="c18"></div>
-              <div class="cuadradoLargoLista" id="f18"></div>
+              <div class="cuadradoLista droppable" id="31"></div>
+              <div class="cuadradoLargoLista">
+                <div id="32" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="33"></div>
+              <div class="cuadradoLargoLista">
+                <div id="34" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" readonly>
+                </div>
+              </div>
+              <div class="cuadradoLista droppable" id="35"></div>
+              <div class="cuadradoLargoLista">
+                <div id="36" class="flecha" style="display:none">
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>">
+                </div>
+              </div>
             </div>
           </div>
         </div>

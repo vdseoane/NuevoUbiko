@@ -15,6 +15,13 @@ $(function () {
             vertical : true
         });
 
+        //Definimos el carrusel para BOX
+        $('.infiniteCarouselBox').infiniteCarouselBox({
+            itemsPerMove : 1,
+            duration : 500,
+            vertical : true
+        });
+
 
         // Definir Drag and Drop
         $(".droppable").droppable({
@@ -24,9 +31,14 @@ $(function () {
                 snapToMiddle(ui.draggable,$(this));
                 $(this).append(ui.draggable);
                 console.log(ui.draggable);
-                ui.draggable.attr("style", "")
-            }
-            
+                ui.draggable.attr("style", "");
+               // if($(this).attr('id')==='c3'){
+                var id = $(this).attr('id');
+                document.getElementById(id-1).style.display="inline-block";
+               // }else if ($(this).attr('id')==='c4'){
+               //         document.getElementById("f3").style.display="inline-block";
+                //    }
+                }
         });
         
         $(".item-wrapper .arrastrable").mousedown(function(){
@@ -34,16 +46,17 @@ $(function () {
             var $wrapper = $item.parent();
             var $clon = $(this).clone();
             $clon.addClass("clon");
-            $clon.css({
-                position : "absolute",
-                top: $item.position().top,
-                left: $item.position().left,
-            });
             $clon.draggable({
                 revert: "invalid",
                 opacity:0.6,
                 create: function(){$(this).data('position',$(this).position())}
             }).appendTo($wrapper);
+            $clon.css({
+                position : "absolute",
+                top: $item.position().top,
+                left: $item.position().left,
+            });
+            
 
             $clon.trigger("drag");
 

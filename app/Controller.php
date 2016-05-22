@@ -94,6 +94,8 @@
             }
 
             $this->recuperarUbicacionesPaciente($nhc);
+        }else{
+            $this->recuperarUbicacionesPaciente($_SESSION['nhcPaciente']);
         }
 
 

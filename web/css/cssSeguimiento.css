@@ -126,7 +126,7 @@
 
 
 .droppable .arrastrable {
-	background-color:red;
+	/*background-color:red;*/
 }
 
 #libros{
@@ -153,19 +153,20 @@
 	width: 90px;
     display: flex;
     flex-direction: column;
-    text-align: center;
     margin: 0 auto;
+    margin-left: 22px;
     margin-top: 20px;
+    background-image: url(../img/flecha.png);
 }
 
 #hora{
 	height: 26px;
-	width: 63px;
+	width: 76px;
 	background-color: transparent;
 	margin-top: 12px;
-	margin-left: 5px;
 	border-color: transparent;
 	color: #FFF;
+	font-size: 13px;
 }
 span.circulos{
 	border:#F3F3F3 5px solid;

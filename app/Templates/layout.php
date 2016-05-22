@@ -15,6 +15,7 @@
 <script src="./libs/jquery-1.12.0.js"></script>
 <script src="./libs/jquery-ui/jquery-ui.min.js"></script>
 <script src='./libs/infinitecarrousel.js'></script>
+<script src='./libs/carouselBox.js'></script>
 <script src='./js/main.js'></script>
 <!--<script src="./js/jquery-1.5.min.js"></script>-->
 
