@@ -31,8 +31,8 @@
         </div>
         <div class="inferior">
           <div id= "inf">
-            <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control" value= <?php echo htmlspecialchars($_SESSION['nombrePaciente']." hola"); ?> readonly>
-            <input type="text" name="nhcPaciente" id="nhcPaciente" class="form-control" value= <?php echo $_SESSION['nhcPaciente']; ?> readonly>
+            <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control" value= "<?php echo $_SESSION['nombrePaciente']." ".$_SESSION['apellidosPaciente']; ?>" readonly>
+            <input type="text" name="nhcPaciente" id="nhcPaciente" class="form-control" value= "<?php echo $_SESSION['nhcPaciente']; ?>" readonly>
           </div>
           <img src ="img/infoPaciente2.png">
         </div>
@@ -46,14 +46,17 @@
         <div class="viewport">
           <div class="list">
             <div class="columnaCarousel">
+
+
+
+
               <div class="cuadradoLista droppable" id="c1">
                 <div id="ad" class="xxx"><span class="circulos azulAD">AD</span></div>
               </div>
               <div class="cuadradoLargoLista" id="f1">
                 <div id ="f" class="flecha" style="background-image: url(img/flecha.png)"">
-                <input type="text" name="hora" id="hora" class="form-control hora" value= <?php echo date("g:i A"); ?> >
+                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php echo $this->hora; ?>" >
                 </div>
-                
               </div>
               <div class="cuadradoLista droppable" id="c2">
                 <div id="tr" class="xxx"><span class="circulos azulTriaje">TR</span></div>

@@ -4,6 +4,7 @@
  {
 
     private $model;
+    private $hora;
 
     public function __construct(){
         //session_start();
@@ -28,7 +29,11 @@
 
             if ($resultado->num_rows > 0) {
                 $_SESSION["nombreUsuario"] = $nombre;
-                
+                $_SESSION["nombrePaciente"] = "Introduzca Paciente";
+                $_SESSION['apellidosPaciente']=" ";
+                $_SESSION["nhcPaciente"] = "NHC";
+                $_SESSION["hora1"] = date("H:i");
+
                 header('Location: index.php?ctl=admision');
             }
             else{
@@ -47,14 +52,17 @@
             $direccion = $_POST['direccion'];
             $nhc = $_POST['nhc'];
             $anotaciones = $_POST['anotaciones'];
-            $horaActual = date("g:i A");
+            $horaActual = date("H:i");
             $fechaActual = date("y-m-d");
-            $fecha = '$fechaActual[mday]/$fechaActual[month]/$fechaActual[year]';
+
             $resultado = $this->model->insertarPaciente($nombre, $apellidos, $telefono, $direccion, $nhc, $anotaciones);
+
             $_SESSION["nombrePaciente"]=$nombre;
+            $_SESSION['apellidosPaciente']=$apellidos;
             $_SESSION["nhcPaciente"]=$nhc;
 
             $this->insertarUbicacion($nhc, 'TR', $horaActual, $fechaActual, $_SESSION['nombreUsuario']);
+            
             header('Location: index.php?ctl=seguimiento');
         }
 
@@ -80,9 +88,12 @@
                 //echo "<script type=\"text/javascript\">alert(\"ai mama\");</script>";
                 foreach ($params['resultado'] as $result) :
                     $_SESSION['nombrePaciente'] = $result['nombre'];
+                    $_SESSION['apellidosPaciente'] = $result['apellidos'];
                     $_SESSION['nhcPaciente'] = $result['nhc'];
                 endforeach;
             }
+
+            $this->recuperarUbicacionesPaciente($nhc);
         }
 
 
@@ -90,8 +101,7 @@
     }
 
     public function seg(){
-                    $_SESSION['nombrePaciente']= "Pacsssiente gika";
-                    $_SESSION['nhcPaciente'] = "NHC";
+                   
 
         require __DIR__ . '/Templates/seguimiento.php';    
     }
@@ -103,6 +113,20 @@
 
     public function box(){
          require __DIR__ . '/Templates/box.php';
+    }
+
+    public function recuperarUbicacionesPaciente($nhc){
+        $params['resultado'] = $this->model->recuperarUbicacionesPaciente($nhc);
+
+        if(count($params) > 0){
+                //echo "<script type=\"text/javascript\">alert(\"ai mama\");</script>";
+
+                foreach ($params['resultado'] as $result) :
+                    $_SESSION['hora'] = $result['horaInicio'];
+                    $this->hora = $result['horaInicio'];
+                    $u1= $result['Localizacion_idLocalizacion'];
+                endforeach;
+            }
     }
 
 

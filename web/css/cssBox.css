@@ -51,7 +51,7 @@
 	border:#BBB 0px solid;
 }
 
-.ColSeparacion{
+.filaSeparacion{
 	float: left;
 	height: 15px;
 	width: 750px;
@@ -86,5 +86,40 @@
 	float: left;
 	height: 15px;
 	width: 125px;
+	text-align: center;
+	background-color: transparent;
+	border-color: transparent;
+}
 
+#infoBoxCama{
+	float: bottom;
+	height: 20px;
+	width: 80px;
+	text-align: center;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+#infoBoxPaciente{
+	float: top;
+	height: 20px;
+	width: 80px;
+	text-align: center;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+#leyenda{
+	float: top;
+	height: 20px;
+	width: 125px;
+	text-align: center;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.c{
+	height: 80px;
+	width: 80px;
+	margin: 0 auto;
 }

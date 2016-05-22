@@ -41,7 +41,7 @@
     }
 
     public function buscarPacienteNhc($nhc){
-        $sql = "SELECT nombre, nhc FROM paciente WHERE nhc = '".$nhc."'";
+        $sql = "SELECT nombre, nhc, apellidos FROM paciente WHERE nhc = '".$nhc."'";
 
         $resultado = $this->conexion->query($sql);
 
@@ -58,6 +58,20 @@
         $sql ="INSERT INTO ubicacionPaciente(Paciente_NHC, Localizacion_idLocalizacion, horaInicio, fecha, Usuario_idUsuario)
             VALUES('".$nhc."','".$idLocalizacion."','".$horaInicio."','".$fecha."','".$usuario."')";
         $this->conexion->query($sql);
+    }
+
+    public function recuperarUbicacionesPaciente($nhc){
+        $sql = "SELECT Localizacion_idLocalizacion, horaInicio FROM ubicacionPaciente WHERE Paciente_NHC = '".$nhc."' ORDER BY horaInicio";
+
+        $resultado = $this->conexion->query($sql);
+
+        $res = array();
+         while ($row = mysqli_fetch_assoc($resultado))
+         {
+             $res[] = $row;
+         }
+
+        return $res;
     }
 /*
      public function dameAlimentos()
