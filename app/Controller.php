@@ -32,7 +32,7 @@
                 $_SESSION["nombrePaciente"] = "Introduzca Paciente";
                 $_SESSION['apellidosPaciente']=" ";
                 $_SESSION["nhcPaciente"] = "NHC";
-                $_SESSION["hora1"] = date("H:i");
+                //$_SESSION["hora1"] = date("H:i");
 
                 header('Location: index.php?ctl=admision');
             }
@@ -122,12 +122,24 @@
 
         if(count($params) > 0){
                 //echo "<script type=\"text/javascript\">alert(\"ai mama\");</script>";
-
+            //reset de $_SESSION['infoUbicacion'] para que cada vez que se ejecute una búsqueda guarde unicamente los datos de la busqueda en cuestión.
+                $_SESSION['infoUbicacion'] = null;
                 foreach ($params['resultado'] as $result) :
+                    $info = array('horaInicio' => $result['horaInicio'], 'localizacion' => $result['Localizacion_idLocalizacion']);
+                    $_SESSION['infoUbicacion'][] = $info;
+
+                    //$infoUbicacion[]=new articulo ($result['horaInicio'],$result['Localizacion_idLocalizacion']);
                     $_SESSION['hora'] = $result['horaInicio'];
                     $this->hora = $result['horaInicio'];
                     $u1= $result['Localizacion_idLocalizacion'];
                 endforeach;
+                $mostrar = $_SESSION['infoUbicacion'][0]['horaInicio'];
+                $mostrar1 = $_SESSION['infoUbicacion'][0]['localizacion'];
+                $mostrar2 = $_SESSION['infoUbicacion'][1]['horaInicio'];
+                $mostrar3 = $_SESSION['infoUbicacion'][1]['localizacion'];
+                $mostrar4 = $_SESSION['infoUbicacion'][2]['horaInicio'];
+                $mostrar5 = $_SESSION['infoUbicacion'][2]['localizacion'];
+                echo "<script type=\"text/javascript\">alert(\"$mostrar, $mostrar1, $mostrar2, $mostrar3, $mostrar4, $mostrar5\");</script>";
             }
     }
 
