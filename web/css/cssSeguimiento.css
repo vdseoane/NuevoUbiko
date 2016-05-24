@@ -2,6 +2,7 @@
 /* CSS Document */
 /*Seguimiento*/
 /*-----------------------*/
+
 #infoPaciente{
 	float: left;
 	border:#F00 0px solid;
@@ -10,16 +11,19 @@
 	margin-top: 50px;
 	margin-left: 82px;
 }
+
 .superior{
 	height: 40px;	
 	width: 540px;
 	margin-left: 44px;
 }
+
 .inferior{
 	height: 40px;	
 	width: 590px;
 	margin-left: 0px;
 }
+
 .buscadorPaciente{
 	position: absolute;
 	float: left;
@@ -29,10 +33,12 @@
 	margin-top: 5px;
 	border:#F00 0px solid;
 }
+
 #buscador{
 	width: 200px;
 	height: 30px;
 }
+
 .imgBuscar{
 	position: relative;
 	float: right;
@@ -40,6 +46,7 @@
 	width: 60px;
 	margin-right:20px; 
 }
+
 #inf{
 	position: absolute;
 	float: left;
@@ -47,6 +54,7 @@
 	height: 38px;
 	border:#F00 0px solid;
 }
+
 #nombrePaciente{
 	position: relative;
 	float: left;
@@ -56,8 +64,10 @@
 	border:#F00 0px solid;	
 	background-color: transparent;
 	border: transparent;
+	box-shadow: none;
 	font-size: 20px;
 }
+
 #nhcPaciente{
 	position: relative;
 	float: right;
@@ -67,8 +77,10 @@
 	border:#F00 0px solid;
 	background-color: transparent;
 	border: transparent;
+	box-shadow: none;
 	font-size: 20px;
 }
+
 #botonesScroll{
 	float: right;
 	border:#F00 0px solid;
@@ -84,6 +96,7 @@
 	width: 200px;
 	margin-right: 2%;
 }
+
 #navCirculosDentro1{
 	float: left;
 	border:#00F 0px solid;
@@ -102,6 +115,7 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 ); 
 	border-radius: 10px 10px 10px 10px;
 }
+
 #navCirculosDentro2{
 	float: right;
 	border:#00F 0px solid;
@@ -120,10 +134,10 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 ); 
 	border-radius: 10px 10px 10px 10px;
 }
+
 .item-wrapper {
 	position:relative;
 }
-
 
 .droppable .arrastrable {
 	/*background-color:red;*/
@@ -138,6 +152,7 @@
 	margin-left: 71px;
 
 }
+
 .xxx{
 	float: left;
 	border:#00F 0px solid;
@@ -151,7 +166,6 @@
 .flecha{
 	height: 50px;
 	width: 90px;
-    display: flex;
     flex-direction: column;
     margin: 0 auto;
     margin-left: 22px;
@@ -167,21 +181,22 @@
 	border-color: transparent;
 	color: #FFF;
 	font-size: 13px;
+	text-align: center;
 }
+
 span.circulos{
 	border:#F3F3F3 5px solid;
-  border-radius: 50px;
-  display: inline-block;
-  font-weight: bold;
-  width: 88px; 
-  height: 88px;
-  margin: 0 auto;
-
-
- -webkit-box-shadow: 3px 3px 5px 0px rgba(181,177,181,1);
+  	border-radius: 50px;
+  	display: inline-block;
+  	font-weight: bold;
+  	width: 88px; 
+  	height: 88px;
+  	margin: 0 auto;
+-webkit-box-shadow: 3px 3px 5px 0px rgba(181,177,181,1);
 -moz-box-shadow: 3px 3px 5px 0px rgba(181,177,181,1);
-box-shadow: 3px 3px 5px 0px rgba(181,177,181,1);
+	box-shadow: 3px 3px 5px 0px rgba(181,177,181,1);
 }
+
 span.blanco{
 	background-color: #FFF;
 	border:#F3F3F3 5px solid;
@@ -192,8 +207,9 @@ span.blanco{
     flex-direction: column;
     text-align: center;
 }
+
 span.azul{
-  background: #67BBFF;
+  	background: #67BBFF;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -202,8 +218,9 @@ span.azul{
     text-align: center;
     color: #FFF;
 }
+
 span.pistacho{
-  background: #BBAD3C;
+	background: #BBAD3C;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -212,8 +229,9 @@ span.pistacho{
     text-align: center;
     color: #FFF;
 }
+
 span.lila{
-  background: #CC99FF;
+  	background: #CC99FF;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -222,8 +240,9 @@ span.lila{
     text-align: center;
     color: #FFF;
 }
+
 span.naranja{
-  background: #FF9900;
+  	background: #FF9900;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -232,8 +251,9 @@ span.naranja{
     text-align: center;
     color: #FFF;
 }
+
 span.violeta{
-  background: #800080;
+  	background: #800080;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -242,8 +262,9 @@ span.violeta{
     text-align: center;
     color: #FFF;
 }
+
 span.rojo{
-  background: #FF0000;
+  	background: #FF0000;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -252,8 +273,9 @@ span.rojo{
     text-align: center;
     color: #FFF;
 }
+
 span.negro{
-  background: #333333;
+  	background: #333333;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -262,8 +284,9 @@ span.negro{
     text-align: center;
     color: #FFF;
 }
+
 span.verde{
-  background: #0B610B;
+  	background: #0B610B;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -272,8 +295,9 @@ span.verde{
     text-align: center;
     color: #FFF;
 }
+
 span.azulAD{
-  background: #0099FF;
+  	background: #0099FF;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;
@@ -282,8 +306,9 @@ span.azulAD{
     text-align: center;
     color: #FFF;
 }
+
 span.azulTriaje{
-  background: #004B7E;
+  	background: #004B7E;
 	border:#FFF 5px solid;
 	display: flex;
     justify-content: center;

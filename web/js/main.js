@@ -35,6 +35,7 @@ $(function () {
                // if($(this).attr('id')==='c3'){
                 var id = $(this).attr('id');
                 document.getElementById(id-1).style.display="inline-block";
+                window.location.href = 'index.php?ctl=ubicacion';
                // }else if ($(this).attr('id')==='c4'){
                //         document.getElementById("f3").style.display="inline-block";
                 //    }
@@ -70,6 +71,49 @@ $(function () {
         
 
     }
+
+    /*var cambioColor = function(){
+        $('#admision').click(function(){
+            var $item = $(this);
+            var $seg = $('#seguimiento');
+            var $box = $('#box');
+            var $est = $('#estadisticas');
+            $item.css("background-color","#339999");
+            //$seg.css("background-color","#4c4c4c");
+            //$box.css("background-color","#4c4c4c");
+            //$est.css("background-color","#4c4c4c");
+        });
+        $('#seguimiento').click(function(){
+            var $item = $(this);
+            var $ad = $('#admision');
+            var $box = $('#box');
+            var $est = $('#estadisticas');
+            $item.css("background-color","#339999")
+            //$ad.css("background-color","#4c4c4c")
+            //$box.css("background-color","#4c4c4c")
+            //$est.css("background-color","#4c4c4c")
+        });
+        $('#box').click(function(){
+            var $item = $(this);
+            var $seg = $('#seguimiento');
+            var $ad = $('#admision');
+            var $est = $('#estadisticas');
+            $item.css("background-color","#339999")
+            //$seg.css("background-color","#4c4c4c")
+            //$ad.css("background-color","#4c4c4c")
+            //$est.css("background-color","#4c4c4c")
+        });
+        $('#estadisticas').click(function(){
+            var $item = $(this);
+            var $seg = $('#seguimiento');
+            var $box = $('#box');
+            var $ad = $('#admision');
+            $item.css("background-color","#339999")
+            //$seg.css("background-color","#4c4c4c")
+            //$box.css("background-color","#4c4c4c")
+           //$ad.css("background-color","#4c4c4c")
+        });
+    }*/
 
 
     var managePages = function () {

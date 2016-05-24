@@ -1,22 +1,25 @@
     
-     <?php ob_start() ?>
+     <?php ob_start();
+      $cont = 0;
+      $cont1 = 0;
+    ?>
 
       <div id="navCirculos">
         <div id="navCirculosDentro1" class="item-wrapper">
-          <div id="box" class="xxx arrastrable"><span class="circulos blanco circulo">BOX</span></div>
-          <div id="tac" class="xxx arrastrable"><span class="circulos blanco">TAC</span></div>
-          <div id="salaA" class="xxx arrastrable"><span class="circulos azul">SALA A</span></div>
-          <div id="salaTra" class="xxx arrastrable"><span class="circulos lila">SALA TRA</span></div>
-          <div id="qui" class="xxx arrastrable"><span class="circulos violeta">QUI</span></div>
-          <div id="exitus" class="xxx arrastrable"><span class="circulos negro">EXITUS</span></div>
+          <div id="BOX" class="xxx arrastrable"><span class="circulos blanco circulo">BOX</span></div>
+          <div id="TAC" class="xxx arrastrable"><span class="circulos blanco">TAC</span></div>
+          <div id="SALAA" class="xxx arrastrable"><span class="circulos azul">SALA A</span></div>
+          <div id="SALATRA" class="xxx arrastrable"><span class="circulos lila">SALA TRA</span></div>
+          <div id="QUI" class="xxx arrastrable"><span class="circulos violeta">QUI</span></div>
+          <div id="EXITUS" class="xxx arrastrable"><span class="circulos negro">EXITUS</span></div>
         </div>
         <div id="navCirculosDentro2" class="item-wrapper">
-          <div id="eco" class="xxx arrastrable"><span class="circulos blanco">ECO</span></div>
-          <div id="rx" class="xxx arrastrable"><span class="circulos blanco">RX</span></div>
-          <div id="salaB" class="xxx arrastrable"><span class="circulos pistacho">SALA B</span></div>
-          <div id="salaObs" class="xxx arrastrable"><span class="circulos naranja">SALA OBS</span></div>
-          <div id="ing" class="xxx arrastrable"><span class="circulos rojo">ING</span></div>
-          <div id="alta" class="xxx arrastrable"><span class="circulos verde">ALTA</span></div>
+          <div id="ECO" class="xxx arrastrable"><span class="circulos blanco">ECO</span></div>
+          <div id="RX" class="xxx arrastrable"><span class="circulos blanco">RX</span></div>
+          <div id="SALAB" class="xxx arrastrable"><span class="circulos pistacho">SALA B</span></div>
+          <div id="SALAOBS" class="xxx arrastrable"><span class="circulos naranja">SALA OBS</span></div>
+          <div id="ING" class="xxx arrastrable"><span class="circulos rojo">ING</span></div>
+          <div id="ALTA" class="xxx arrastrable"><span class="circulos verde">ALTA</span></div>
         </div>
       </div>
       <div id="infoPaciente">
@@ -45,261 +48,82 @@
         <div id="botonesScroll" class="pre"><img src="img/flechaAbajo.png" alt="cancelar" /></div>     
         <div class="viewport">
           <div class="list">
-            <div class="columnaCarousel">
+            <?php for($i=0; $i<7; $i++){?>
+  <div class="columnaCarousel">
+    <?php for($j=0; $j<3; $j++){?>
+      <div class="cuadradoLista droppable" id="<?php echo $cont; ?>">
+      <?php if(isset($_SESSION['infoUbicacion'][$cont1]['localizacion'])){ ?>
+        <div id="<?php echo $_SESSION['infoUbicacion'][$cont1]['localizacion'] ?>" class="xxx"><span class="circulos <?php 
+          switch ($_SESSION['infoUbicacion'][$cont1]['localizacion']) {
+            case 'AD':
+              echo 'azulAD';
+              break;
+            case 'TR':
+              echo 'azulTriaje';
+              break;
+            case 'BOX':
+              echo 'blanco';
+              break;
+            case 'ECO':
+              echo 'blanco';
+              break;
+            case 'TAC':
+              echo 'blanco';
+              break;
+            case 'RX':
+              echo 'blanco';
+              break;
+            case 'SALA A':
+              echo 'azul';
+              break;
+            case 'SALA B':
+              echo 'pistacho';
+              break;
+            case 'SALA TRA':
+              echo 'lila';
+              break;
+            case 'SALA OBS':
+              echo 'naranja';
+              break;
+            case 'QUI':
+              echo 'violeta';
+              break;
+            case 'ING':
+              echo 'rojo';
+              break;
+            case 'EXITUS':
+              echo 'negro';
+              break;
+            case 'ALTA':
+              echo 'verde';
+              break;
+          }
+          ?>">
+          <?php echo $_SESSION['infoUbicacion'][$cont1]['localizacion'] ?></span></div>
+        <?php } ?>
+      </div>
+      <?php $cont++; ?>
 
-
-
-
-              <div class="cuadradoLista droppable" id="1">
-                <div id="ad" class="xxx"><span class="circulos azulAD">AD</span></div>
-              </div>
-              <div class="cuadradoLargoLista">
-                <div id="2" class="flecha" style="display:inline-block">
-                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][0]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][0]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="3">
-                <div id="tr" class="xxx"><span class="circulos azulTriaje">TR</span></div>
-              </div>
-              <div class="cuadradoLargoLista">
-                <div id="4" class="flecha" style="display:none">
-                  <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][1]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][1]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="5"></div>
-              <div class="cuadradoLargoLista">
-                <div id="6" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][2]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][2]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-            </div>
-            <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="7"></div>
-              <div class="cuadradoLargoLista">
-                <div id="8" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][3]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][3]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="9"></div>
-              <div class="cuadradoLargoLista">
-                <div id="10" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][4]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][4]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="11">
-              </div>
-              <div class="cuadradoLargoLista">
-                <div id="12" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][5]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][5]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-            </div>
-            <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="13"></div>
-              <div class="cuadradoLargoLista">
-                <div id="14" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][6]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][6]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="15"></div>
-              <div class="cuadradoLargoLista">
-                <div id="16" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][7]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][7]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="17"></div>
-              <div class="cuadradoLargoLista">
-                <div id="18" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][8]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][8]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-            </div>
-            <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="19"></div>
-              <div class="cuadradoLargoLista">
-                <div id="20" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][10]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][10]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="21"></div>
-              <div class="cuadradoLargoLista">
-                <div id="22" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][11]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][11]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="23"></div>
-              <div class="cuadradoLargoLista">
-                <div id="24" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][12]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][12]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-            </div>
-            <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="25"></div>
-              <div class="cuadradoLargoLista">
-                <div id="26" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][13]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][13]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="27"></div>
-              <div class="cuadradoLargoLista">
-                <div id="28" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][14]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][14]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="29"></div>
-              <div class="cuadradoLargoLista">
-                <div id="30" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][15]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][15]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-            </div>
-            <div class="columnaCarousel">
-              <div class="cuadradoLista droppable" id="31"></div>
-              <div class="cuadradoLargoLista">
-                <div id="32" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][16]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][16]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="33"></div>
-              <div class="cuadradoLargoLista">
-                <div id="34" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][17]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][17]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-              <div class="cuadradoLista droppable" id="35"></div>
-              <div class="cuadradoLargoLista">
-                <div id="36" class="flecha" style="display:none">
-                   <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
-                    if(isset($_SESSION['infoUbicacion'][18]['horaInicio'])){
-                        echo $_SESSION['infoUbicacion'][18]['horaInicio'];
-                      }else{
-                        echo 'na';     
-                      }
-                    ?>"
-                    readonly>
-                </div>
-              </div>
-            </div>
+      <div class="cuadradoLargoLista" >
+        <div  class="flecha" id="<?php echo $cont; ?>" style="display: <?php 
+          if(isset($_SESSION['infoUbicacion'][$cont1+1]['localizacion'])){ ?>
+            inline-block">
+          <?php } else { ?>
+            none"> 
+          <?php } ?>
+          <input type="text" name="hora" id="hora" class="form-control hora" value= "<?php
+            if(isset($_SESSION['infoUbicacion'][$cont1+1]['horaInicio'])){
+              echo substr($_SESSION['infoUbicacion'][$cont1+1]['horaInicio'], 0, 5);
+            }else{
+              echo 'na';     
+            } ?>"
+          readonly>
+        </div>
+      </div>
+      <?php $cont++;
+          $cont1++; ?>
+    <?php }?>
+<?php } ?>
           </div>
         </div>
       </div>

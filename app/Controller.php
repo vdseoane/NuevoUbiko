@@ -6,6 +6,7 @@
     private $model;
     private $hora;
 
+
     public function __construct(){
         //session_start();
         session_start();
@@ -32,6 +33,7 @@
                 $_SESSION["nombrePaciente"] = "Introduzca Paciente";
                 $_SESSION['apellidosPaciente']=" ";
                 $_SESSION["nhcPaciente"] = "NHC";
+                $_SESSION["fondo"] = 'ad';
                 //$_SESSION["hora1"] = date("H:i");
 
                 header('Location: index.php?ctl=admision');
@@ -44,7 +46,7 @@
     }
 
     public function admision(){
-
+        $_SESSION["fondo"] = 'ad';
         if(isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['nhc'])){
             $nombre = $_POST['nombre'];
             $apellidos = $_POST['apellidos'];
@@ -52,16 +54,14 @@
             $direccion = $_POST['direccion'];
             $nhc = $_POST['nhc'];
             $anotaciones = $_POST['anotaciones'];
-            $horaActual = date("H:i");
-            $fechaActual = date("y-m-d");
 
             $resultado = $this->model->insertarPaciente($nombre, $apellidos, $telefono, $direccion, $nhc, $anotaciones);
-
+            echo "<script type=\"text/javascript\">alert(\"hello\");</script>";
             $_SESSION["nombrePaciente"]=$nombre;
             $_SESSION['apellidosPaciente']=$apellidos;
             $_SESSION["nhcPaciente"]=$nhc;
 
-            $this->insertarUbicacion($nhc, 'TR', $horaActual, $fechaActual, $_SESSION['nombreUsuario']);
+            $this->insertarPrimeraUbicacion($nhc, $_SESSION['nombreUsuario']);
             
             header('Location: index.php?ctl=seguimiento');
         }
@@ -77,6 +77,7 @@
 
     public function seguimiento(){
         //echo "<script type=\"text/javascript\">alert(\"hello\");</script>";
+        $_SESSION["fondo"] = 'seg';
         if(isset($_POST['buscador'])){
             $nhc = $_POST['buscador'];
             $params = array(
@@ -108,12 +109,23 @@
         require __DIR__ . '/Templates/seguimiento.php';    
     }
 
-    public function insertarUbicacion($nhc, $idLocalizacion, $horaInicio, $fecha, $usuario){
+    public function insertarUbicacion($nhc, $idLocalizacion, $usuario){
+        $horaActual = date("H:i");
+        $fechaActual = date("y-m-d");
+        $this->model->insertarUbicacion($nhc, $idLocalizacion, $horaActual, $fechaActual, $usuario);
+    }
 
-        $this->model->insertarUbicacion($nhc, $idLocalizacion, $horaInicio, $fecha, $usuario);
+    public function insertarPrimeraUbicacion($nhc, $usuario){
+        $horaActual = date("H:i");
+        $fechaActual = date("y-m-d");
+        $this->model->insertarPrimeraUbicacion($nhc, 'AD', $horaActual, $fechaActual, $usuario);
+        $this->model->insertarPrimeraUbicacion($nhc, 'TR', $horaActual, $fechaActual, $usuario);
     }
 
     public function box(){
+        $_SESSION["fondo"] = 'box';
+        $this->recuperarCamas();
+
          require __DIR__ . '/Templates/box.php';
     }
 
@@ -127,132 +139,30 @@
                 foreach ($params['resultado'] as $result) :
                     $info = array('horaInicio' => $result['horaInicio'], 'localizacion' => $result['Localizacion_idLocalizacion']);
                     $_SESSION['infoUbicacion'][] = $info;
-
-                    //$infoUbicacion[]=new articulo ($result['horaInicio'],$result['Localizacion_idLocalizacion']);
-                    $_SESSION['hora'] = $result['horaInicio'];
-                    $this->hora = $result['horaInicio'];
-                    $u1= $result['Localizacion_idLocalizacion'];
                 endforeach;
-                $mostrar = $_SESSION['infoUbicacion'][0]['horaInicio'];
+                /*$mostrar = $_SESSION['infoUbicacion'][0]['horaInicio'];
                 $mostrar1 = $_SESSION['infoUbicacion'][0]['localizacion'];
                 $mostrar2 = $_SESSION['infoUbicacion'][1]['horaInicio'];
                 $mostrar3 = $_SESSION['infoUbicacion'][1]['localizacion'];
                 $mostrar4 = $_SESSION['infoUbicacion'][2]['horaInicio'];
                 $mostrar5 = $_SESSION['infoUbicacion'][2]['localizacion'];
-                echo "<script type=\"text/javascript\">alert(\"$mostrar, $mostrar1, $mostrar2, $mostrar3, $mostrar4, $mostrar5\");</script>";
+                echo "<script type=\"text/javascript\">alert(\"$mostrar, $mostrar1, $mostrar2, $mostrar3, $mostrar4, $mostrar5\");</script>";*/
             }
     }
+    //Recupera todas las camas de BD con su Localización y con el paciente asignado en caso de existir
+    public function recuperarCamas(){
+        $params['resultado'] = $this->model->recuperarCamas();
+        if(count($params) > 0){
+            $_SESSION['infoCamas'] = null;
+            foreach ($params['resultado'] as $result) :
+                $info = array('localizacion' => $result['Localizacion_idLocalizacion'], 'numeroCama' => $result['numeroCama'], 'paciente' => $result['Paciente_NHCPaciente']);
+                $_SESSION['infoCamas'][] = $info;
+            endforeach;
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-/*
-     public function inicio()
-     {
-         $params = array(
-             'mensaje' => 'Bienvenido al curso de symfony 1.4',
-             'fecha' => date('d-m-yyy'),
-         );
-         require __DIR__ . '/templates/inicio.php';
-     }
-
-     public function listar()
-     {
-         $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                     Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
-
-         $params = array(
-             'alimentos' => $m->dameAlimentos(),
-         );
-
-         require __DIR__ . '/templates/mostrarAlimentos.php';
-     }
-
-     public function insertar()
-     {
-         $params = array(
-             'nombre' => '',
-             'energia' => '',
-             'proteina' => '',
-             'hc' => '',
-             'fibra' => '',
-             'grasa' => '',
-         );
-
-         $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                     Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
-
-         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-             // comprobar campos formulario
-             if ($m->validarDatos($_POST['nombre'], $_POST['energia'],
-                      $_POST['proteina'], $_POST['hc'], $_POST['fibra'],
-                      $_POST['grasa'])) {
-                 $m->insertarAlimento($_POST['nombre'], $_POST['energia'],
-                           $_POST['proteina'], $_POST['hc'], $_POST['fibra'],
-                           $_POST['grasa']);
-                 header('Location: index.php?ctl=listar');
-
-             } else {
-                 $params = array(
-                     'nombre' => $_POST['nombre'],
-                     'energia' => $_POST['energia'],
-                     'proteina' => $_POST['proteina'],
-                     'hc' => $_POST['hc'],
-                     'fibra' => $_POST['fibra'],
-                     'grasa' => $_POST['grasa'],
-                 );
-                 $params['mensaje'] = 'No se ha podido insertar el alimento. Revisa el formulario';
-             }
-         }
-
-         require __DIR__ . '/templates/formInsertar.php';
-     }
-
-     public function buscarPorNombre()
-     {
-         $params = array(
-             'nombre' => '',
-             'resultado' => array(),
-         );
-
-         $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                     Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
-
-         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-             $params['nombre'] = $_POST['nombre'];
-             $params['resultado'] = $m->buscarAlimentosPorNombre($_POST['nombre']);
-         }
-
-         require __DIR__ . '/templates/buscarPorNombre.php';
-     }
-
-     public function ver()
-     {
-         if (!isset($_GET['id'])) {
-             throw new Exception('Página no encontrada');
-         }
-
-         $id = $_GET['id'];
-
-         $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                     Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
-
-         $alimento = $m->dameAlimento($id);
-
-         $params = $alimento;
-
-         require __DIR__ . '/templates/verAlimento.php';
-     }
-
-     */
-
+    public function ubicacion(){
+         require __DIR__ . '/Templates/box.php';
+    }
  }
  ?>

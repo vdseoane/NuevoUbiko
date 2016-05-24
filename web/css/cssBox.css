@@ -98,6 +98,7 @@
 	text-align: center;
 	background-color: transparent;
 	border-color: transparent;
+	box-shadow: none;
 }
 
 #infoBoxPaciente{

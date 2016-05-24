@@ -14,7 +14,8 @@
      'logOut' => array('controller' =>'Controller', 'action' =>'logOut'),
      'seguimiento' => array('controller' =>'Controller', 'action' =>'seguimiento'),
      'seg' => array('controller' =>'Controller', 'action' =>'seg'),
-     'box' => array('controller' =>'Controller', 'action' =>'box')
+     'box' => array('controller' =>'Controller', 'action' =>'box'),
+     'ubicacion' => array('controller' =>'Controller', 'action' =>'ubicacion')
      /*'listar' => array('controller' =>'Controller', 'action' =>'listar'),
      'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
      'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),

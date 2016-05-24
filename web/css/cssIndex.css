@@ -22,6 +22,7 @@
 	padding-left: 20px;
 	padding-top: 6px;
 }
+
 #navegacion {
 	float: left;
 	border:#581200 0px solid;
@@ -29,14 +30,15 @@
 	width:520px;
 	padding-top: 32px;
 }
+
 .navegacion_ul{
 	border:#FF0598 0px solid;
 	list-style-type: none;
 	display: inline;
 	margin: 0 auto;
 	margin-left: 0px;
-	
 }
+
 .navegacion_li a{
 	float: left;
 	display: inline;
@@ -53,6 +55,7 @@
 	height: 57px;
 	width: 115px;
 }
+
 .navegacion_li a:hover{
 	float: left;
 	display: inline;
@@ -69,6 +72,7 @@
 	height: 57px;
 	width: 115px;
 }
+
 #login {
 	float: left;
 	border:#074100 0px solid;
@@ -76,12 +80,13 @@
 	width:250px;
 	padding-top: 10px;
 }
+
 #imagen_login{
 	position: absolute;
 	z-index:0;
 	margin-top: 0px;
-	
 }
+
 #texto_login{
 	position: absolute;
 	z-index:1;
@@ -91,8 +96,10 @@
 	margin-left: 32px;
 	background-color: transparent;
 	border: transparent;
+	box-shadow: none;
 	font-size: 20px;
 }
+
 #boton_login{
 	position: absolute;
 	z-index: 2;
@@ -101,6 +108,7 @@
 	margin-top: 34px;
 	margin-left: 184px;
 }
+
 /*Contenedor*/
 #contenedor{
 	border:#FF0598 0px solid;

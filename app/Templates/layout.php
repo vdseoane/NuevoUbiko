@@ -23,6 +23,7 @@
 
 <head>
 <title>index</title>
+<link rel="icon" type="image/gif" href="img/animated_favicon1.gif">
 </head>
 
 <body>
@@ -34,9 +35,9 @@
       </div>
       <div id="navegacion">
         <ul class="navegacion_ul">
-          <li class="navegacion_li" href=""><a id="admision" title="Admision" href="index.php?ctl=admision">Admisi&oacute;n</a></li>
-          <li class="navegacion_li" ><a id="seguimiento"  title="Seguimiento" href="index.php?ctl=seguimiento">Seguimiento</a></li>
-          <li class="navegacion_li"><a id="box" href="index.php?ctl=box" title="BOX">BOX</a></li>
+          <li class="navegacion_li"><a id="admision" title="Admision" href="index.php?ctl=admision" style="<?php if($_SESSION["fondo"] == 'ad'){ ?> background-color: #339999 <?php } ?> ">Admisi&oacute;n</a></li>
+          <li class="navegacion_li"><a id="seguimiento"  title="Seguimiento" href="index.php?ctl=seguimiento" style="<?php if($_SESSION["fondo"] == 'seg'){ ?> background-color: #339999 <?php } ?> ">Seguimiento</a></li>
+          <li class="navegacion_li"><a id="box" href="index.php?ctl=box" title="BOX" style="<?php if($_SESSION["fondo"] == 'box'){ ?> background-color: #339999 <?php } ?> ">BOX</a></li>
           <li class="navegacion_li"><a href="#" id="estadisticas" title="Estadisticas">Estad&iacute;sticas</a></li>
         </ul>
       </div>
