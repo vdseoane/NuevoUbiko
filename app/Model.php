@@ -93,5 +93,15 @@
 
         return $res;
     }
+
+    public function insertarFinUbicacionAnterior($nhc, $ultimaUbicacion, $hora){
+        $sql = "UPDATE ubicacionPaciente SET horaFin='".$hora."' WHERE Localizacion_idLocalizacion='".$ultimaUbicacion."' AND Paciente_NHC='".$nhc."'";
+        $this->conexion->query($sql);
+    }
+
+    public function insertarCamaBOX($nhc){
+        $sql = "UPDATE cama SET Paciente_NHCPaciente='".$nhc."' WHERE Paciente_NHCPaciente=null";
+        $this->conexion->query($sql);
+    }
  }
  ?>

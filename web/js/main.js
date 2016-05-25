@@ -35,7 +35,50 @@ $(function () {
                // if($(this).attr('id')==='c3'){
                 var id = $(this).attr('id');
                 document.getElementById(id-1).style.display="inline-block";
-                window.location.href = 'index.php?ctl=ubicacion';
+                var idPadre = $(this).children().attr('id');
+                switch(idPadre){
+                    case "BOX":
+                        window.location.href = 'index.php?ctl=insertarBOX';
+                        break;
+                    case "ECO":
+                        window.location.href = 'index.php?ctl=insertarECO';
+                        break;
+                    case "TAC":
+                        window.location.href = 'index.php?ctl=insertarTAC';
+                        break;
+                    case "RX":
+                        window.location.href = 'index.php?ctl=insertarRX';
+                        break;
+                    case "TR":
+                        window.location.href = 'index.php?ctl=insertarTR';
+                        break;
+                    case "SALAA":
+                        window.location.href = 'index.php?ctl=insertarSalaA';
+                        break;
+                    case "SALAB":
+                        window.location.href = 'index.php?ctl=insertarSalaB';
+                        break;
+                    case "SALATRA":
+                        window.location.href = 'index.php?ctl=insertarSalaTra';
+                        break;
+                    case "SALAOBS":
+                        window.location.href = 'index.php?ctl=insertarOBS';
+                        break;
+                    case "QUI":
+                        window.location.href = 'index.php?ctl=insertarQUI';
+                        break;
+                    case "ING":
+                        window.location.href = 'index.php?ctl=insertarING';
+                        break;
+                    case "EXITUS":
+                        window.location.href = 'index.php?ctl=insertarExitus';
+                        break;
+                    case "ALTA":
+                        window.location.href = 'index.php?ctl=insertarAlta';
+                        break;
+
+                }
+                
                // }else if ($(this).attr('id')==='c4'){
                //         document.getElementById("f3").style.display="inline-block";
                 //    }

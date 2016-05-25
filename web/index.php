@@ -15,11 +15,21 @@
      'seguimiento' => array('controller' =>'Controller', 'action' =>'seguimiento'),
      'seg' => array('controller' =>'Controller', 'action' =>'seg'),
      'box' => array('controller' =>'Controller', 'action' =>'box'),
-     'ubicacion' => array('controller' =>'Controller', 'action' =>'ubicacion')
-     /*'listar' => array('controller' =>'Controller', 'action' =>'listar'),
-     'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
-     'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),
-     'ver' => array('controller' =>'Controller', 'action' =>'ver')*/
+     'ubicacion' => array('controller' =>'Controller', 'action' =>'ubicacion'),
+     'insertarBOX' => array('controller' =>'Controller', 'action' =>'insertarBOX'),
+     'insertarECO' => array('controller' =>'Controller', 'action' =>'insertarECO'),
+     'insertarRX' => array('controller' =>'Controller', 'action' =>'insertarRX'),
+     'insertarTAC' => array('controller' =>'Controller', 'action' =>'insertarTAC'),
+     'insertarTR' => array('controller' =>'Controller', 'action' =>'insertarTR'),
+     'insertarSalaA' => array('controller' =>'Controller', 'action' =>'insertarSalaA'),
+     'insertarSalaB' => array('controller' =>'Controller', 'action' =>'insertarSalaB'),
+     'insertarSalaTra' => array('controller' =>'Controller', 'action' =>'insertarSalaTra'),
+     'insertarOBS' => array('controller' =>'Controller', 'action' =>'insertarOBS'),
+     'insertarQUI' => array('controller' =>'Controller', 'action' =>'insertarQUI'),
+     'insertarING' => array('controller' =>'Controller', 'action' =>'insertarING'),
+     'insertarExitus' => array('controller' =>'Controller', 'action' =>'insertarExitus'),
+     'insertarAlta' => array('controller' =>'Controller', 'action' =>'insertarAlta'),
+     'recuperarUbicaciones' => array('controller' =>'Controller', 'action' =>'recuperarUbicaciones')
  );
 
  // Parseo de la ruta

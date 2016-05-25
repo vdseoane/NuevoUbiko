@@ -115,7 +115,7 @@
             if(isset($_SESSION['infoUbicacion'][$cont1+1]['horaInicio'])){
               echo substr($_SESSION['infoUbicacion'][$cont1+1]['horaInicio'], 0, 5);
             }else{
-              echo 'na';     
+              echo substr(date("H:i"), 0, 5);     
             } ?>"
           readonly>
         </div>
@@ -123,8 +123,9 @@
       <?php $cont++;
           $cont1++; ?>
     <?php }?>
+    </div>
 <?php } ?>
-          </div>
+          
         </div>
       </div>
       </div>
