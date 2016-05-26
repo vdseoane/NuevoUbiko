@@ -99,9 +99,29 @@
         $this->conexion->query($sql);
     }
 
-    public function insertarCamaBOX($nhc){
-        $sql = "UPDATE cama SET Paciente_NHCPaciente='".$nhc."' WHERE Paciente_NHCPaciente=null";
+    public function recuperarCamasVacias(){
+        $sql = "SELECT Localizacion_idLocalizacion, numeroCama FROM cama WHERE isNull(Paciente_NHCPaciente)";
+
+        $resultado = $this->conexion->query($sql);
+
+        $res = array();
+         while ($row = mysqli_fetch_assoc($resultado))
+         {
+             $res[] = $row;
+         }
+
+        return $res;
+    }
+
+    public function insertarCamaBOX($nhc, $localizacion, $numero){
+        $sql = "UPDATE cama SET Paciente_NHCPaciente='".$nhc."' WHERE Localizacion_idLocalizacion='".$localizacion."' AND numeroCama='".$numero."'";
         $this->conexion->query($sql);
     }
+
+    public function insertarEstadoFundamental($nhc, $estado){
+        $sql = "UPDATE Paciente SET estado='".$estado."' WHERE nhc='".$nhc."'";
+        $this->conexion->query($sql);
+    }
+    
  }
  ?>

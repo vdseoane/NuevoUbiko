@@ -8,6 +8,7 @@
 <link href="./css/cssAdmision.css" rel="stylesheet" type="text/css">
 <link href="./css/cssSeguimiento.css" rel="stylesheet" type="text/css">
 <link href="./css/cssBox.css" rel="stylesheet" type="text/css">
+<link href="./css/cssEstadisticas.css" rel="stylesheet" type="text/css">
 
 <link href="" rel="stylesheet" type="text/css" id="linkestilo">
 
@@ -38,7 +39,7 @@
           <li class="navegacion_li"><a id="admision" title="Admision" href="index.php?ctl=admision" style="<?php if($_SESSION["fondo"] == 'ad'){ ?> background-color: #339999 <?php } ?> ">Admisi&oacute;n</a></li>
           <li class="navegacion_li"><a id="seguimiento"  title="Seguimiento" href="index.php?ctl=seguimiento" style="<?php if($_SESSION["fondo"] == 'seg'){ ?> background-color: #339999 <?php } ?> ">Seguimiento</a></li>
           <li class="navegacion_li"><a id="box" href="index.php?ctl=box" title="BOX" style="<?php if($_SESSION["fondo"] == 'box'){ ?> background-color: #339999 <?php } ?> ">BOX</a></li>
-          <li class="navegacion_li"><a href="#" id="estadisticas" title="Estadisticas">Estad&iacute;sticas</a></li>
+          <li class="navegacion_li"><a id="estadisticas" title="Estadisticas" href="index.php?ctl=estadisticas" style="<?php if($_SESSION["fondo"] == 'estadisticas'){ ?> background-color: #339999 <?php } ?>">Estad&iacute;sticas</a></li>
         </ul>
       </div>
       <div id="login">

@@ -14,6 +14,7 @@
      'logOut' => array('controller' =>'Controller', 'action' =>'logOut'),
      'seguimiento' => array('controller' =>'Controller', 'action' =>'seguimiento'),
      'seg' => array('controller' =>'Controller', 'action' =>'seg'),
+     'estadisticas' => array('controller' =>'Controller', 'action' =>'estadisticas'),
      'box' => array('controller' =>'Controller', 'action' =>'box'),
      'ubicacion' => array('controller' =>'Controller', 'action' =>'ubicacion'),
      'insertarBOX' => array('controller' =>'Controller', 'action' =>'insertarBOX'),

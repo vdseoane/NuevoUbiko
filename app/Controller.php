@@ -109,6 +109,12 @@
         require __DIR__ . '/Templates/seguimiento.php';    
     }
 
+    public function estadisticas(){
+        $_SESSION["fondo"] = 'estadisticas';           
+
+        require __DIR__ . '/Templates/estadisticas.php';    
+    }
+
     public function insertarUbicacion($nhc, $idLocalizacion, $usuario){
         $horaActual = date("H:i");
         $fechaActual = date("y-m-d");
@@ -169,94 +175,104 @@
     }
 
     public function insertarBOX(){
-        echo "<script type=\"text/javascript\">alert(\"dentro BOX\");</script>";
-        $this->model->insertarCamaBOX($_SESSION['nhcPaciente']);
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $params['resultado'] = $this->model->recuperarCamasVacias();
+        if(count($params) > 0){
+            $_SESSION['camasVacias'] = null;
+            foreach ($params['resultado'] as $result) :
+                $camas = array('localizacion' => $result['Localizacion_idLocalizacion'], 'numeroCama' => $result['numeroCama']);
+            $_SESSION['camasVacias'][] = $camas;
+            endforeach;
+        }
+        $this->model->insertarCamaBOX($_SESSION['nhcPaciente'], $_SESSION['camasVacias'][0]['localizacion'], $_SESSION['camasVacias'][0]['numeroCama']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'BOX', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarECO(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'ECO', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarRX(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'RX', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarTAC(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'TAC', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarTR(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'TR', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarSalaA(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'SALA A', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarSalaB(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'SALA B', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarSalaTra(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'SALA TRA', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarOBS(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'SALA OBS', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarQUI(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'QUI', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarING(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $this->insertarEstadoFundamental($_SESSION['nhcPaciente'], '2');
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'ING', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarExitus(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $this->insertarEstadoFundamental($_SESSION['nhcPaciente'], '3');
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'EXITUS', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
     public function insertarAlta(){
-        $ultimaUbicacion = count($_SESSION['infoUbicacion']);
-        //$this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
+        $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
+        $this->insertarEstadoFundamental($_SESSION['nhcPaciente'], '4');
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'ALTA', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
@@ -264,6 +280,10 @@
  public function insertarFinUbicacionAnterior($nhc, $ultimaUbicacion){
     $hora = date("H:i");
     $this->model->insertarFinUbicacionAnterior($nhc, $ultimaUbicacion, $hora);
+ }
+
+ public function insertarEstadoFundamental($nhc, $estado){
+    $this->model->insertarEstadoFundamental($nhc, $estado);
  }
 }
  ?>
