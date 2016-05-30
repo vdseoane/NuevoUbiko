@@ -3,6 +3,11 @@
 /*Seguimiento*/
 /*-----------------------*/
 
+@font-face {
+font-family: digital;
+src: url("../fuentes/digital.ttf") format("truetype");
+}
+
 #infoPaciente{
 	float: left;
 	border:#F00 0px solid;
@@ -375,3 +380,46 @@ span.azulTriaje{
 	width: 700px;
 	border:#ABC 0px solid;
 }
+
+.letraBlanca{
+	font-family: digital;
+	font-style: cursive;
+	color: white;
+}
+
+.letraNegra{
+	font-family: digital;
+	font-style: cursive;
+	color: black;
+}
+
+.tiempoParcial{
+	float: left;
+    z-index: 3;
+    height: 21px;
+    width: 53px;
+    background-color: transparent;
+    margin: 0 auto;
+    margin-top: -34px;
+    margin-left: 18px;
+    border-color: transparent;
+    font-size: 15px;
+    text-align: center;
+    box-shadow: none;
+}
+
+.tiempoTotal{
+	float: left;
+    z-index: 3;
+    height: 21px;
+    width: 53px;
+    background-color: transparent;
+    margin: 0 auto;
+    margin-top: -77px;
+    margin-left: 18px;
+    border-color: transparent;
+    font-size: 15px;
+    text-align: center;
+    box-shadow: none;
+}
+

@@ -5,6 +5,10 @@
 
     private $model;
     private $hora;
+    private $contadorTotal;
+    private $contadorParcial;
+    private $inicio;
+    private $fin;
 
 
     public function __construct(){
@@ -116,13 +120,13 @@
     }
 
     public function insertarUbicacion($nhc, $idLocalizacion, $usuario){
-        $horaActual = date("H:i");
+        $horaActual = date("H:i:s");
         $fechaActual = date("y-m-d");
         $this->model->insertarUbicacion($nhc, $idLocalizacion, $horaActual, $fechaActual, $usuario);
     }
 
     public function insertarPrimeraUbicacion($nhc, $usuario){
-        $horaActual = date("H:i");
+        $horaActual = date("H:i:s");
         $fechaActual = date("y-m-d");
         $this->model->insertarPrimeraUbicacion($nhc, 'AD', $horaActual, $fechaActual, $usuario);
         $this->model->insertarPrimeraUbicacion($nhc, 'TR', $horaActual, $fechaActual, $usuario);
@@ -137,20 +141,27 @@
 
     public function recuperarUbicaciones(){
         $this->recuperarUbicacionesPaciente($_SESSION['nhcPaciente']);
-        require __DIR__ . '/Templates/seguimiento.php';
+        header('Location: index.php?ctl=seguimiento'); 
         
     }
 
 
     public function recuperarUbicacionesPaciente($nhc){
         $params['resultado'] = $this->model->recuperarUbicacionesPaciente($nhc);
-
+        $this->contadorTiempo = 0;
         if(count($params) > 0){
-                //echo "<script type=\"text/javascript\">alert(\"ai mama\");</script>";
             //reset de $_SESSION['infoUbicacion'] para que cada vez que se ejecute una búsqueda guarde unicamente los datos de la busqueda en cuestión.
+                $this->contadorParcial = "00:00:00";
+                $this->contadorTotal = "00:00:00";
                 $_SESSION['infoUbicacion'] = null;
                 foreach ($params['resultado'] as $result) :
-                    $info = array('horaInicio' => $result['horaInicio'], 'localizacion' => $result['Localizacion_idLocalizacion']);
+                    if($result['horaFin'] != null){
+                        $this->fin = date('H:i:s',strtotime($result['horaFin']));
+                        $this->inicio = date('H:i:s',strtotime($result['horaInicio']));  
+                        $this->contadorParcial = $this->restarHoras($this->inicio, $this->fin);
+                        $this->contadorTotal = $this->sumarHoras($this->contadorTotal, $this->contadorParcial);  
+                }
+                    $info = array('horaInicio' => $result['horaInicio'], 'localizacion' => $result['Localizacion_idLocalizacion'], 'horaFin' => $result['horaFin'], 'tiempoParcial' => $this->contadorParcial, 'tiempoTotal' => $this->contadorTotal);
                     $_SESSION['infoUbicacion'][] = $info;
                 endforeach;
                 /*$mostrar = $_SESSION['infoUbicacion'][0]['horaInicio'];
@@ -256,7 +267,8 @@
     public function insertarING(){
         $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
         $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
-        $this->insertarEstadoFundamental($_SESSION['nhcPaciente'], '2');
+        $this->insertarEstadoFinal($_SESSION['nhcPaciente'], '2');
+        $this->liberarCama($_SESSION['nhcPaciente']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'ING', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
@@ -264,7 +276,8 @@
     public function insertarExitus(){
         $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
         $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
-        $this->insertarEstadoFundamental($_SESSION['nhcPaciente'], '3');
+        $this->insertarEstadoFinal($_SESSION['nhcPaciente'], '3');
+        $this->liberarCama($_SESSION['nhcPaciente']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'EXITUS', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
@@ -272,18 +285,71 @@
     public function insertarAlta(){
         $ultimaUbicacion = count($_SESSION['infoUbicacion'])-1;
         $this->insertarFinUbicacionAnterior($_SESSION['nhcPaciente'], $_SESSION['infoUbicacion'][$ultimaUbicacion]['localizacion']);
-        $this->insertarEstadoFundamental($_SESSION['nhcPaciente'], '4');
+        $this->insertarEstadoFinal($_SESSION['nhcPaciente'], '4');
+        $this->liberarCama($_SESSION['nhcPaciente']);
         $this->insertarUbicacion($_SESSION['nhcPaciente'], 'ALTA', $_SESSION['nombreUsuario']);
         $this->recuperarUbicaciones();
     }
 
  public function insertarFinUbicacionAnterior($nhc, $ultimaUbicacion){
-    $hora = date("H:i");
+    $hora = date("H:i:s");
     $this->model->insertarFinUbicacionAnterior($nhc, $ultimaUbicacion, $hora);
  }
 
- public function insertarEstadoFundamental($nhc, $estado){
-    $this->model->insertarEstadoFundamental($nhc, $estado);
+ public function insertarEstadoFinal($nhc, $estado){
+    $this->model->insertarEstadoFinal($nhc, $estado);
  }
+
+public function liberarCama($nhc){
+    $this->model->liberarCama($nhc);
+}
+
+public function restarHoras($horaini,$horafin)
+{
+    $toret;
+    $horai=substr($horaini,0,2);
+    $mini=substr($horaini,3,2);
+    $segi=substr($horaini,6,2);
+ 
+    $horaf=substr($horafin,0,2);
+    $minf=substr($horafin,3,2);
+    $segf=substr($horafin,6,2);
+ 
+    $ini=((($horai*60)*60)+($mini*60)+$segi);
+    $fin=((($horaf*60)*60)+($minf*60)+$segf);
+ 
+    $dif=$fin-$ini;
+ 
+    $difh=floor($dif/3600);
+    $difm=floor(($dif-($difh*3600))/60);
+    $difs=$dif-($difm*60)-($difh*3600);
+    $toret = date("H-i-s",mktime($difh,$difm,$difs));
+    $toret = str_replace('-', ':', $toret);
+    return $toret;
+}
+
+public function sumarHoras($horaini,$horafin)
+{
+    $toret;
+    $horai=substr($horaini,0,2);
+    $mini=substr($horaini,3,2);
+    $segi=substr($horaini,6,2);
+ 
+    $horaf=substr($horafin,0,2);
+    $minf=substr($horafin,3,2);
+    $segf=substr($horafin,6,2);
+ 
+    $ini=((($horai*60)*60)+($mini*60)+$segi);
+    $fin=((($horaf*60)*60)+($minf*60)+$segf);
+ 
+    $dif=$fin+$ini;
+ 
+    $difh=floor($dif/3600);
+    $difm=floor(($dif-($difh*3600))/60);
+    $difs=$dif-($difm*60)-($difh*3600);
+    $toret = date("H-i-s",mktime($difh,$difm,$difs));
+    $toret = str_replace('-', ':', $toret);
+    return $toret;
+}
 }
  ?>

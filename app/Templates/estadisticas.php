@@ -15,7 +15,9 @@
     <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control" value="" readonly>
     <input type="text" name="nhcPaciente" id="nhcPaciente" class="form-control" value= "" readonly>
   </div>
-  <img src ="img/infoPaciente2.png">
+  <div id="infEst">
+    <img id="infoEst" src ="img/infoPaciente2.png">
+  </div>
 </div>
 <img id="grafico_2" src="img/grafico2.png" alt="grafico2" />
 </div>

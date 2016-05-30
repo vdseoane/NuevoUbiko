@@ -67,7 +67,7 @@
     }
 
     public function recuperarUbicacionesPaciente($nhc){
-        $sql = "SELECT Localizacion_idLocalizacion, horaInicio, orden FROM ubicacionPaciente WHERE Paciente_NHC = '".$nhc."' ORDER BY orden";
+        $sql = "SELECT Localizacion_idLocalizacion, horaInicio, horaFin, orden FROM ubicacionPaciente WHERE Paciente_NHC = '".$nhc."' ORDER BY orden";
 
         $resultado = $this->conexion->query($sql);
 
@@ -118,8 +118,13 @@
         $this->conexion->query($sql);
     }
 
-    public function insertarEstadoFundamental($nhc, $estado){
+    public function insertarEstadoFinal($nhc, $estado){
         $sql = "UPDATE Paciente SET estado='".$estado."' WHERE nhc='".$nhc."'";
+        $this->conexion->query($sql);
+    }
+
+    public function liberarCama($nhc){
+        $sql = "UPDATE cama SET Paciente_NHCPaciente=null WHERE Paciente_NHCPaciente='".$nhc."'";
         $this->conexion->query($sql);
     }
     

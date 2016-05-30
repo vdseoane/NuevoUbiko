@@ -2,6 +2,7 @@
      <?php ob_start();
       $cont = 0;
       $cont1 = 0;
+      $contadorTiempo = 0;
     ?>
 
       <div id="navCirculos">
@@ -50,10 +51,11 @@
           <div class="list">
             <?php for($i=0; $i<7; $i++){?>
   <div class="columnaCarousel">
-    <?php for($j=0; $j<3; $j++){?>
+    <?php if($_SESSION['nhcPaciente'] != "NHC"){ for($j=0; $j<3; $j++){?>
       <div class="cuadradoLista droppable" id="<?php echo $cont; ?>">
       <?php if(isset($_SESSION['infoUbicacion'][$cont1]['localizacion'])){ ?>
-        <div id="<?php echo $_SESSION['infoUbicacion'][$cont1]['localizacion'] ?>" class="xxx"><span class="circulos <?php 
+        <div id="<?php echo $_SESSION['infoUbicacion'][$cont1]['localizacion'] ?>" class="xxx">
+        <span class="circulos <?php 
           switch ($_SESSION['infoUbicacion'][$cont1]['localizacion']) {
             case 'AD':
               echo 'azulAD';
@@ -99,11 +101,36 @@
               break;
           }
           ?>">
-          <?php echo $_SESSION['infoUbicacion'][$cont1]['localizacion'] ?></span></div>
-        <?php } ?>
+          <?php echo $_SESSION['infoUbicacion'][$cont1]['localizacion'] ?></span>
+          <div id="<?php $cont?>"><input type="text" name="tiempoTotal" id="tiempoTotal" class="tiempoTotal 
+            <?php if($_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'BOX' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'RX' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'ECO' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'TAC'){
+              echo "letraNegra";
+              }else{
+                echo "letraBlanca";
+            } ?>"   
+            value= "<?php echo $_SESSION['infoUbicacion'][$cont1]['tiempoTotal']; ?>" readonly></div>
+          <div id="<?php $cont?>"><input type="text" name="tiempoParcial" id="tiempoParcial" class="tiempoParcial 
+            <?php if($_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'BOX' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'RX' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'ECO' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'TAC'){
+              echo "letraNegra";
+              }else{
+                echo "letraBlanca";
+            } ?>" 
+            value= "<?php if(isset($_SESSION['infoUbicacion'][$cont1]['horaFin'])){
+              echo $_SESSION['infoUbicacion'][$cont1]['tiempoParcial'];
+            } else{
+              echo "-";
+            }
+            ?>" readonly></div>
+          </div>
+        <?php 
+          if($_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'ALTA' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'EXITUS' OR $_SESSION['infoUbicacion'][$cont1]['localizacion'] == 'ING'){
+          break 2;
+        }
+      } ?> <!-- fin del for-->
+        
       </div>
-      <?php $cont++; ?>
-
+      <?php 
+      $cont++; ?>
       <div class="cuadradoLargoLista" >
         <div  class="flecha" id="<?php echo $cont; ?>" style="display: <?php 
           if(isset($_SESSION['infoUbicacion'][$cont1+1]['localizacion'])){ ?>
@@ -120,11 +147,15 @@
           readonly>
         </div>
       </div>
+
       <?php $cont++;
-          $cont1++; ?>
-    <?php }?>
+      
+          $cont1++; }?>
     </div>
-<?php } ?>
+<?php } 
+
+
+} ?>
           
         </div>
       </div>
